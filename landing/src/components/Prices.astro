@@ -1,0 +1,102 @@
+---
+// Prices.astro
+const packages = [
+  {
+    name: 'Essencial Look',
+    price: '160',
+    desc: 'Ideal para manutenção regular do visual.',
+    features: [
+      'Corte de cabelo feminino ou masculino',
+      'Lavagem especial com shampoo premium',
+      'Secagem e escova finalizadora',
+      'Bebida de cortesia (Café/Água)'
+    ],
+    popular: false,
+    cta: 'Agendar Essencial'
+  },
+  {
+    name: 'Glamour Completo',
+    price: '390',
+    desc: 'O combo perfeito para renovação total e destaque.',
+    features: [
+      'Coloração Completa profissional',
+      'Hidratação Profunda reconstrutora',
+      'Lavagem com massagem capilar',
+      'Escova finalizadora modeladora',
+      'Atendimento prioritário'
+    ],
+    popular: true,
+    cta: 'Agendar Glamour'
+  },
+  {
+    name: 'Spa Unhas & Cabelo',
+    price: '280',
+    desc: 'O cuidado completo de mãos, pés e cabelo.',
+    features: [
+      'Corte de cabelo feminino',
+      'Manicure & Pedicure Premium',
+      'Hidratação Express no lavatório',
+      'Escova finalizadora lisa/ondas',
+      'Esmaltação premium inclusa'
+    ],
+    popular: false,
+    cta: 'Agendar Spa'
+  }
+]
+---
+
+<section id="precos" class="py-24 border-t border-slate-900 bg-slate-950/20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Pacotes & Combos</h2>
+      <p class="text-slate-400">
+        Aproveite nossas condições especiais combinando múltiplos serviços e ganhe descontos exclusivos.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {packages.map((pkg) => (
+        <div class={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${pkg.popular ? 'bg-slate-900 border-2 border-brand-500 shadow-xl shadow-brand-500/5 -translate-y-2' : 'bg-slate-900/50 border border-slate-800 hover:border-slate-700'}`}>
+          {pkg.popular && (
+            <span class="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500 px-4 py-1 text-xs font-bold text-white uppercase tracking-wider">
+              Mais Vendido
+            </span>
+          )}
+
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xl font-bold text-white">{pkg.name}</h3>
+              <p class="mt-2 text-sm text-slate-400 leading-relaxed">{pkg.desc}</p>
+            </div>
+
+            <div class="flex items-baseline gap-1">
+              <span class="text-xs font-semibold text-slate-400">R$</span>
+              <span class="text-4xl font-extrabold text-white">{pkg.price}</span>
+              <span class="text-xs text-slate-400">/sessão</span>
+            </div>
+
+            <ul class="space-y-3.5 pt-6 border-t border-slate-800">
+              {pkg.features.map((feat) => (
+                <li class="flex items-start gap-3 text-sm text-slate-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  {feat}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="mt-8">
+            <a
+              href="http://localhost:3000/agendar"
+              class={`w-full inline-flex items-center justify-center rounded-xl py-3.5 text-sm font-semibold transition-all ${pkg.popular ? 'bg-gradient-to-r from-brand-600 to-pink-600 text-white shadow-lg shadow-brand-500/10 hover:from-brand-500 hover:to-pink-500' : 'bg-slate-800 text-slate-200 hover:bg-slate-700'}`}
+            >
+              {pkg.cta}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+// Footer.astro
+---
+
+<footer id="contato" class="bg-slate-950 border-t border-slate-900 pt-20 pb-10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <!-- Brand column -->
+      <div class="space-y-4 md:col-span-2">
+        <div class="flex items-center gap-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-brand-600 to-pink-500 shadow-md">
+            <span class="text-base font-bold text-white">S</span>
+          </div>
+          <span class="text-xl font-extrabold text-white">
+            Salon<span class="bg-gradient-to-r from-brand-400 to-pink-400 bg-clip-text text-transparent">Flow</span>
+          </span>
+        </div>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
+          Unindo profissionalismo, sofisticação e tecnologia para proporcionar a você a melhor experiência em serviços de beleza.
+        </p>
+      </div>
+
+      <!-- Opening Hours column -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Horários</h3>
+        <ul class="space-y-2.5 text-sm text-slate-400">
+          <li>Segunda a Sexta: <span class="text-slate-200">08:00 às 18:00</span></li>
+          <li>Sábados: <span class="text-slate-200">08:00 às 14:00</span></li>
+          <li>Domingos: <span class="text-slate-200">Fechado</span></li>
+        </ul>
+      </div>
+
+      <!-- Address column -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Endereço</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Av. Paulista, 1000 - Bela Vista<br />
+          São Paulo - SP, 01310-100<br />
+          <span class="text-brand-400 mt-2 block hover:underline">
+            <a href="tel:+5511999999999">(11) 99999-9999</a>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="pt-8 border-t border-slate-900/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>&copy; {new Date().getFullYear()} SalonFlow. Todos os direitos reservados.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-slate-300">Termos de Uso</a>
+        <a href="#" class="hover:text-slate-300">Política de Privacidade</a>
+      </div>
+    </div>
+  </div>
+</footer>

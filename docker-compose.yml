@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: salonflow-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-salonflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-salonflow}
+      POSTGRES_DB: ${POSTGRES_DB:-salonflow}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-salonflow}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    image: mxliaf/salonflow-backend
+    container_name: salonflow-api
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-salonflow}:${POSTGRES_PASSWORD:-salonflow}@db:5432/${POSTGRES_DB:-salonflow}
+      SECRET_KEY: ${SECRET_KEY}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:4321}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    image: mxliaf/salonflow-frontend
+    container_name: salonflow-web
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3001:3000"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+    driver: local

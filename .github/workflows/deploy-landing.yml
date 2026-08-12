@@ -1,0 +1,59 @@
+name: Deploy Landing Page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'landing/**'
+      - '.github/workflows/deploy-landing.yml'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  ci:
+    name: CI — Test & Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./landing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ./landing/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_APP_URL: ${{ secrets.PUBLIC_APP_URL }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: landing-dist
+          path: landing/dist/
+
+  cd:
+    name: CD — Deploy to Netlify
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: landing-dist
+          path: landing/dist/
+      - run: npm install -g netlify-cli
+      - name: Deploy to Netlify
+        run: |
+          netlify deploy \
+            --dir=landing/dist \
+            --prod \
+            --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --site=${{ secrets.NETLIFY_SITE_ID }}

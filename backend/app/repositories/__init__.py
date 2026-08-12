@@ -1,0 +1,3 @@
+from app.repositories.agendamento import AgendamentoRepository as AgendamentoRepository
+from app.repositories.servico import ServicoRepository as ServicoRepository
+from app.repositories.usuario import UsuarioRepository as UsuarioRepository

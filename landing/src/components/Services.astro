@@ -1,0 +1,100 @@
+---
+// Services.astro
+const services = [
+  {
+    emoji: '✂️',
+    title: 'Corte Feminino',
+    desc: 'Corte moderno com lavagem e escova finalizadora para valorizar seu estilo.',
+    duration: '60 min',
+    price: '120.00',
+    color: 'from-brand-500/10 to-pink-500/10'
+  },
+  {
+    emoji: '🧔',
+    title: 'Corte Masculino',
+    desc: 'Corte social ou moderno com acabamento premium na navalha.',
+    duration: '30 min',
+    price: '60.00',
+    color: 'from-blue-500/10 to-indigo-500/10'
+  },
+  {
+    emoji: '🎨',
+    title: 'Coloração Completa',
+    desc: 'Tintura profissional com produtos de alta fixação e brilho intenso.',
+    duration: '120 min',
+    price: '250.00',
+    color: 'from-purple-500/10 to-violet-500/10'
+  },
+  {
+    emoji: '💅',
+    title: 'Manicure & Pedicure',
+    desc: 'Cuidado completo para as unhas com esmaltação e acabamento impecável.',
+    duration: '60 min',
+    price: '80.00',
+    color: 'from-rose-500/10 to-orange-500/10'
+  },
+  {
+    emoji: '💆‍♀️',
+    title: 'Hidratação Profunda',
+    desc: 'Tratamento intensivo de restauração capilar para maciez e nutrição.',
+    duration: '45 min',
+    price: '110.00',
+    color: 'from-emerald-500/10 to-teal-500/10'
+  },
+  {
+    emoji: '✨',
+    title: 'Estética & Design',
+    desc: 'Design de sobrancelhas e tratamentos faciais personalizados.',
+    duration: '40 min',
+    price: '90.00',
+    color: 'from-amber-500/10 to-yellow-500/10'
+  }
+]
+---
+
+<section id="servicos" class="py-24 border-t border-slate-900 bg-slate-950/40 relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nossos Serviços</h2>
+      <p class="text-slate-400">
+        Oferecemos tratamentos de beleza personalizados com profissionais altamente qualificados.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((s) => (
+        <div class="group relative rounded-3xl bg-slate-900/50 border border-slate-800 hover:border-brand-500/40 p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-lg">
+          <div class="space-y-4">
+            <div class={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${s.color} flex items-center justify-center text-2xl`}>
+              {s.emoji}
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
+              {s.title}
+            </h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              {s.desc}
+            </p>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
+            <div class="flex items-center gap-1.5 text-xs text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-brand-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {s.duration}
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-base font-extrabold text-white">R$ {s.price}</span>
+              <a
+                href="http://localhost:3000/agendar"
+                class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-semibold text-white group-hover:bg-brand-600 transition-colors"
+              >
+                Agendar
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

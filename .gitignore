@@ -1,0 +1,26 @@
+# Variáveis de ambiente
+.env
+.env.local
+.env.production
+
+# Node
+node_modules/
+.next/
+dist/
+.astro/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.db
+uv.lock
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

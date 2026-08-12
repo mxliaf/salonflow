@@ -1,0 +1,64 @@
+---
+// Testimonials.astro
+const testimonials = [
+  {
+    name: 'Juliana Pires',
+    role: 'Cliente há 2 anos',
+    text: 'O SalonFlow facilitou muito a minha vida. Consigo ver exatamente quais horários a Ana tem livre e marcar direto pelo celular. O atendimento é sempre super pontual!',
+    stars: 5,
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120'
+  },
+  {
+    name: 'Rodrigo Medeiros',
+    role: 'Cliente recorrente',
+    text: 'Sensacional! Praticidade total para agendar o corte na navalha aos sábados de manhã. O painel é super rápido e os lembretes ajudam a não esquecer o horário.',
+    stars: 5,
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120'
+  },
+  {
+    name: 'Camila Silva',
+    role: 'Cliente Vip',
+    text: 'Amei a praticidade do sistema de agendamento online e o resultado da coloração ficou divino. Os profissionais são atenciosos e o espaço é maravilhoso.',
+    stars: 5,
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=120&h=120'
+  }
+]
+---
+
+<section id="depoimentos" class="py-24 border-t border-slate-900 bg-slate-950/40 relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">O que nossos clientes dizem</h2>
+      <p class="text-slate-400">
+        A satisfação e o bem-estar dos nossos clientes são nossa prioridade número um.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((t) => (
+        <div class="rounded-3xl bg-slate-900/40 border border-slate-800 p-8 space-y-6 hover:border-brand-500/20 transition-colors">
+          <!-- Stars -->
+          <div class="flex items-center gap-1">
+            {Array.from({ length: t.stars }).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-amber-400">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+              </svg>
+            ))}
+          </div>
+
+          <p class="text-sm text-slate-300 leading-relaxed italic">
+            "{t.text}"
+          </p>
+
+          <div class="flex items-center gap-4 pt-4 border-t border-slate-800/80">
+            <img src={t.avatar} alt={t.name} class="w-12 h-12 rounded-full object-cover border border-slate-800" />
+            <div>
+              <p class="text-sm font-bold text-white">{t.name}</p>
+              <p class="text-xs text-slate-400">{t.role}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
