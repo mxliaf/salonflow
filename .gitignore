@@ -24,3 +24,12 @@ uv.lock
 # OS
 .DS_Store
 Thumbs.db
+
+# Terraform e Infraestrutura
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/.terraform.lock.hcl
+
+# Chaves SSH (Seguranca)
+terraform/salonflow_key
